@@ -108,6 +108,7 @@ $(document).ready(function(){
     var secondNumberCont = "";
     var operator = "";
     var firstNumberDone = false;
+    var calcDone = false;
 
     $('.number').on('click', function() {
 
@@ -117,7 +118,7 @@ $(document).ready(function(){
            firstNumber = firstNumber + firstNumberCont;
            $('#firstNumber').html(firstNumber);
        }
-       else if(firstNumberDone === true){
+       else if( (firstNumberDone === true) && (calcDone === false) ){
            secondNumberCont = this.value;
            secondNumberCont = String(secondNumberCont);
            secondNumber = secondNumber + secondNumberCont;
@@ -147,10 +148,11 @@ $(document).ready(function(){
     });
 
     $('.equal').on('click',function() {
-        firstNumber = parseInt(firstNumber);
-        secondNumber = parseInt(secondNumber);
-        if ((firstNumber != null) && (secondNumber != null) ){
-            console.log('type of firstnumber:' + typeof(firstNumber));
+        if ( (firstNumber != null) && (secondNumber != null) ){
+            console.log('firstNumber');
+            firstNumber = parseInt(firstNumber);
+            secondNumber = parseInt(secondNumber);
+            calcDone = true;
             if (operator === '-'){
                 $('#result').html(firstNumber - secondNumber);
             }
@@ -180,6 +182,7 @@ $(document).ready(function(){
         secondNumberCont = "";
         operator = "";
         firstNumberDone = false;
+        calcDone = false;
     });
 })
 
